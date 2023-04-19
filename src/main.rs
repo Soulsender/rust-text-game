@@ -1,15 +1,17 @@
 use std::io::Write;
 use std::io;
 use colored::Colorize;
+use std::cell::Cell;
 
 fn main() {
-    print!("{}[2J", 27 as char);
-    println!("RUST ADVENTURE GAME");
-    println!("{}", "The general syntax is: \"go to front\", \"look around\", \"open door\", \"use object\".\n\n\n".blue());
-    std::io::stdout().flush().expect("Flushing to succeed");
-    std::thread::sleep(std::time::Duration::from_millis(3000));
-    house_front()
+
+    title();
+    house_front();
 }
+
+// ===================
+// STORY FUNCTIONS 
+// ===================
 
 fn house_back() {
     // explain location
@@ -33,9 +35,11 @@ fn house_back() {
             house_front();
             break;
         }
-        else if input == "go to generator" || input == "use generator" {
+        // else if input == "go to generator" || input == "use generator" {
 
-        }
+        //     typewrite("You somehow recognize the generator as an old model, although you don't know why you know that. It takes three pulls until the machine starts. It begins to groan and shake as the the fuel is ignited. You recognize that it won't run forever, but it should be stable for the time being.");           
+            
+        // }
         else {
             // called if invalid action is used
             println!("{}", "Unrecognized Action".red());
@@ -74,6 +78,12 @@ fn house_front() {
     }      
 }
 
+
+// ===================
+// TECHNICAL FUNCTIONS 
+// ===================
+
+
 // use for anything that requires a typewriter effect
 fn typewrite(words: &str) {
     for c in words.chars() {
@@ -87,4 +97,14 @@ fn typewrite(words: &str) {
 // use for prompts like "what do you do?"
 fn prompt(words: &str) {
     println!("{}", words.red().bold());
+}
+
+// show the title sequence
+fn title() {
+    print!("{}[2J", 27 as char);
+    println!("{}", "RUST ADVENTURE GAME".blue().bold());
+    println!("{}", "By Soulsender".blue());
+    println!("{}", "The general syntax is: \"go to front\", \"look around\", \"open door\", \"use object\".\n\n\n".blue());
+    std::io::stdout().flush().expect("Flushing to succeed");
+    std::thread::sleep(std::time::Duration::from_millis(3000));
 }
