@@ -1,7 +1,6 @@
 use std::io::Write;
 use std::io;
 use colored::Colorize;
-use std::cell::Cell;
 
 fn main() {
 
@@ -35,11 +34,11 @@ fn house_back() {
             house_front();
             break;
         }
-        // else if input == "go to generator" || input == "use generator" {
+        else if input == "go to generator" || input == "use generator" {
 
-        //     typewrite("You somehow recognize the generator as an old model, although you don't know why you know that. It takes three pulls until the machine starts. It begins to groan and shake as the the fuel is ignited. You recognize that it won't run forever, but it should be stable for the time being.");           
-            
-        // }
+            typewrite("You somehow recognize the generator as an old model, although you don't know why you know that. It takes three pulls until the machine starts. It begins to groan and shake as the the fuel is ignited. You recognize that it won't run forever, but it should be stable for the time being.");
+            break;
+        }
         else {
             // called if invalid action is used
             println!("{}", "Unrecognized Action".red());
